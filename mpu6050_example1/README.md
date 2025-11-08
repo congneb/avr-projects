@@ -11,6 +11,7 @@ MPU6050: Combines a 3-axis gyroscope and 3-axis accelerometer.
 it's the last byte we want to read from the I2C device during that transaction.
 
 🧠 ACK vs NACK in I2C Reads
+
 ACK (Acknowledge): Sent by the master to tell the slave “I want to keep reading more bytes.”
 
 NACK (Not Acknowledge): Sent by the master to say “I’m done reading, stop transmitting.”
@@ -95,3 +96,32 @@ Now you send the device address again, but with the read bit (1).
 This switches the bus direction: the MPU6050 will start sending data back to you.
 
 You then read the high byte (ACK) and the low byte (NACK).
+
+- Sumary
+
+If you only did one i2c_start(), the sensor wouldn’t know you want to read after writing the register address.
+
+The repeated start is the standard I²C way to:
+
+Write a register pointer.
+
+Immediately read data from that register.
+
+It avoids releasing the bus (no i2c_stop() in between), so the transaction stays atomic and safe.
+
+### STM32
+
+the mechanism is the same on STM32, because it’s dictated by the I²C protocol itself, not by the Arduino or STM32 platform.
+
+I²C devices like the MPU6050 use a register-based addressing scheme.
+
+To read a register:
+
+Write phase: Send the device address (write mode) + register address.
+
+Repeated Start: Without releasing the bus, send the device address again (read mode).
+
+Read phase: Receive the data bytes (ACK for all but the last, NACK for the last).
+
+
+  
