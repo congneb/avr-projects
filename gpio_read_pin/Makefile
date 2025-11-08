@@ -14,4 +14,4 @@ main.hex: main.elf
     $(OBJCOPY) -O ihex -R .eeprom $< $@
 
 clean:
-    rm -f *.elf *.hex
+	rm -f *.elf *.hex
