@@ -18,7 +18,8 @@ jobs:
       run: make
 
     - name: Check build
-      run: ls gpio_read_pin/build
+      run: |
+        find . - name "*.hex"
 
     # - name: Upload firmware artifacts
     #   uses: actions/upload-artifact@v4

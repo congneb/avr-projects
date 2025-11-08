@@ -7,7 +7,7 @@ OBJCOPY = avr-objcopy
 CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os
 
 # List of projects (subdirectories)
-PROJECTS = gpio_read_pin
+PROJECTS = gpio_read_pin mpu6050_example1
 
 .PHONY: all $(PROJECTS) clean
 # Default target: build all projects
