@@ -8,10 +8,10 @@ CFLAGS=-mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os
 all: main.hex
 
 main.elf: main.c
-    $(CC) $(CFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) -o $@ $<
 
 main.hex: main.elf
-    $(OBJCOPY) -O ihex -R .eeprom $< $@
+	$(OBJCOPY) -O ihex -R .eeprom $< $@
 
 clean:
 	rm -f *.elf *.hex

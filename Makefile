@@ -14,10 +14,10 @@ all: $(PROJECTS)
 
 # Rule to build each project
 $(PROJECTS):
-    $(MAKE) -C $@
+	$(MAKE) -C $@
 
 # Clean all projects
 clean:
-    for d in $(PROJECTS); do \
-        $(MAKE) -C $$d clean; \
-    done
+	for d in $(PROJECTS); do \
+	    	$(MAKE) -C $$d clean; \
+		done
