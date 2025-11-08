@@ -9,6 +9,7 @@ CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os
 # List of projects (subdirectories)
 PROJECTS = gpio_read_pin
 
+.PHONY: all $(PROJECTS) clean
 # Default target: build all projects
 all: $(PROJECTS)
 
