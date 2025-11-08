@@ -1,0 +1,29 @@
+name: Build-Firmware
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install AVR toolchain
+      run: sudo apt-get update && sudo apt-get install -y gcc-avr binutils-avr avr-libc avrdude make
+
+    - name: Build project
+      run: make
+
+    - name: Check build
+      run: ls gpio_read_pin/build
+
+    # - name: Upload firmware artifacts
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: firmware
+    #     path: ./*/*.hex
+
+
